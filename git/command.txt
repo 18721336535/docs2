@@ -1,0 +1,63 @@
+$ git init
+
+$ git add .
+$ git commit -m '修改主页'
+
+提交远程仓库之前需要关联远程仓库
+$ git remote add origin https://github.com/xx/demo.git
+
+其实这句代码的含义就是相当于给origin键加了一个https://github.com/xxx/demo.git值，其实就是一个键值对，可以通过如下指令查看
+$ git remote -v
+origin  https://github.com/x/demo.git (fetch)
+origin  https://github.com/x/demo.git (push)
+
+dev分支，所以提交的时候要写成如下格式
+$ git push origin master:dev
+如果仓库里的代码没有被修改过，那么这个时候就成功了
+
+但是如果远程分支被其他人提交修改了，我这里的代码和他人不同步，就会报错，所以这个时候要做同步工作，使用如下指令
+$ git pull --rebase origin dev
+
+相当于把远程github上的项目的dev分支的代码拉到了本地和我改好的代码合并，会出现上面的信息，其中有一些信息是我们需要关注的，也就是
+Auto-merging server/config.js
+CONFLICT (add/add): Merge conflict in server/config.js
+Auto-merging client/home/assets/teaching/bg4.jpg
+CONFLICT (add/add): Merge conflict in client/common/components/Navbar.js
+其中
+server/config.js
+client/home/assets/teaching/bg4.jpg
+client/common/components/Navbar.js
+是工程中的文件，上面的翻译过来也就是说，在pull过程中做了自动合并，但是发生了冲突，需要我们手动去解决，然后就把这些文件打开去查看冲突的位置，都已经被git标好了，留下需要的代码即可
+
+解决之后执行
+$ git rebase --continue
+
+client/common/components/Navbar.js: needs merge
+client/home/assets/teaching/bg4.jpg: needs merge
+server/config.js: needs merge
+You must edit all merge conflicts and then
+mark them as resolved using git add
+
+根据提示，之后执行
+git add .
+
+然后在执行
+$ git rebase --continue
+
+Applying: 修改主页
+这个时候发现pull操作之后的冲突已经都解决完了
+
+然后再执行
+$ git push origin master:dev
+
+Counting objects: 42, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (41/41), done.
+Writing objects: 100% (42/42), 1.27 MiB | 282.00 KiB/s, done.
+Total 42 (delta 13), reused 0 (delta 0)
+remote: Resolving deltas: 100% (13/13), completed with 6 local objects.
+To https://github.com/x/demo.git
+171b4ce..cec6ccf  master -> dev
+
+这个时候就真正的将代码提交到了github的远程分支dev上，打开github切换分支查看提交就可以看到记录了
+
