@@ -1,0 +1,16 @@
+ip add
+这样物理机上是访问不到的，还要开放端口。
+看看有没有开放：
+
+firewall-cmd --zone=public --list-ports
+1
+这是开放了8080：
+
+没有开放就开放centos上的8080端口：
+
+firewall-cmd  --zone=public  --add-port=8080/tcp --permanent
+1
+马上刷新防火墙配置文件：
+
+firewall-cmd --reload
+————————————————
