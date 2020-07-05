@@ -150,3 +150,14 @@ To https://github.com/x.git
    a856fda..fa62e7f  dev -> master
 Branch 'dev' set up to track remote branch 'master' from 'origin'.
 
+
+
+git push -u origin 本地分支：远程分支    执行有冲突时的解决办法：
+① 使用git pull 先拉远程库到本地
+② 在进入的 vim 界面进行如下操作
+
+press i 进入输入模式
+按 esc 退出修改 commit
+输入 :wq 退出并进行合并
+重新使用 git push
+
