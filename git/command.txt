@@ -60,4 +60,93 @@ To https://github.com/x/demo.git
 171b4ce..cec6ccf  master -> dev
 
 这个时候就真正的将代码提交到了github的远程分支dev上，打开github切换分支查看提交就可以看到记录了
+=================================
+开分支有两种方式：
+
+一种是在远程开好分支，本地直接拉下来
+另外一种是在本地创建好分支，再推送至远程
+
+远程先开好分支，然后拉到本地
+
+git checkout -b test origin/test //拉取远程的test分支到本地
+1
+本地开好分支，再推送至远程
+
+git checkout -b test //创建并切换到test分支
+git push origin test:test //推送本地的test分支(冒号前面)到远程的test分支(冒号后面，如果没有会自动创建)
+————————————————
+
+$ git clone https://github.com/xx.git
+Cloning into 'springboot_mybatis_h2_web'...
+remote: Enumerating objects: 1287, done.
+remote: Counting objects: 100% (1287/1287), done.
+remote: Compressing objects: 100% (1216/1216), done.
+remote: Total 1287 (delta 56), reused 1279 (delta 50), pack-reused 0
+Receiving objects: 100% (1287/1287), 39.03 MiB | 155.00 KiB/s, done.
+Resolving deltas: 100% (56/56), done.
+Checking out files: 100% (1865/1865), done.
+
+
+zbq@DESKTOP-VUCA48E MINGW64 ~/Desktop/h2_web
+$ ls
+springboot_mybatis_h2_web/
+
+$ cd springboot_mybatis_h2_web/
+
+zbq@x MINGW64 ~/Desktop/xx (master)
+$ git branch
+* master
+
+zbq@x MINGW64 ~/Desktop/xx (master)
+$ git checkout dev
+Switched to a new branch 'dev'
+Branch 'dev' set up to track remote branch 'dev' from 'origin'.
+
+zbq@x MINGW64 ~/Desktop/xx (dev)
+$ git branch
+* dev
+  master
+
+zbq@x MINGW64 ~/Desktop/xx (dev)
+$ git add .
+
+zbq@x MINGW64 ~/Desktop/xx (dev)
+$ git commit -m "dlete log"
+[dev fa62e7f] dlete log
+ 1 file changed, 1 insertion(+), 324 deletions(-)
+ rewrite info.log (99%)
+
+zbq@x MINGW64 ~/Desktop/xx (dev)
+$ git remote -v
+origin  https://github.com/18721336535/springboot_mybatis_h2_web.git (fetch)
+origin  https://github.com/18721336535/springboot_mybatis_h2_web.git (push)
+
+zbq@x MINGW64 ~/Desktop/xx (dev)
+$ git push -u origin  dev:dev
+
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 249 bytes | 249.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote:
+remote: GitHub found 1 vulnerability on x's default branch (1 high). To find out more, visit:
+remote:      https://github.com/x/network/alert/pom.xml/commons-beanutils:commons-beanutils/open
+remote:
+To https://github.com/x.git
+   a856fda..fa62e7f  dev -> dev
+Branch 'dev' set up to track remote branch 'dev' from 'origin'.
+
+zbq@x MINGW64 ~/Desktop/xx (dev)
+$ git push -u origin  dev:master
+Total 0 (delta 0), reused 0 (delta 0)
+remote:
+remote: GitHub found 1 vulnerability on x's default branch (1 high). To find out more, visit:
+remote:      https://github.com/x/network/alert/pom.xml/commons-beanutils:commons-beanutils/open
+remote:
+To https://github.com/x.git
+   a856fda..fa62e7f  dev -> master
+Branch 'dev' set up to track remote branch 'master' from 'origin'.
 
