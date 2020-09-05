@@ -1,0 +1,47 @@
+$ git clone -b release_1 https://github.com/h2_web.git
+$ git checkout --src/main/java/com/itheima/controller/MybatisController.java
+$ git checkout -- .
+$ git status
+$ git reset HEAD src/main/java/com/itheima/controller/MybatisController.java
+$ git reset HEAD
+$ git branch
+$ git remote -v
+$ git add .
+$  git commit -m "add anno 1"
+$ git log
+$ git log -3
+$ git log -- pretty=oneline
+$ git log --pretty=oneline -3
+$ git log --stat
+$ git log --stat -2
+$ git show 1a10ce295e4bb0a89e68cd0afc344298d6efa1af
+$ git show 1149
+$ git reset HEAD^
+$ git push
+$ git pull origin release_1
+$ gitk
+$ git add -A
+$ git fetch origin/release_1
+$ git checkout master
+$ git pull
+$ git merge
+$ git stash  .gitignore
+$ git stash pop
+$ git cherry
+$ git cherry -v
+$ git --version
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
