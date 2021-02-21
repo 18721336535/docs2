@@ -1,0 +1,19 @@
+从远程克隆仓库
+git clone -b master
+在master分支创建本地分支
+git checkout -b dev
+dev上开发与提交
+git checkout dev
+git add .
+git commit -m ""
+将dev合并到master
+git log --author='xxx'
+git checkout master
+git cherry-pick commitid(如果冲突 解决/git add ./git cherry-pick --continue)
+git pull --rebase(如果冲突 解决/git add ./git rebase --continue)
+git push（origin branch）(如果提交问题 继续git pull --rebase / git reset head^/git add . /...)
+
+git branch查看本地分支
+git branch -r 查看远程分支
+删除本地分支 git branch -d 分支名
+git cherry -v 查看已经提交但是没有push到远程的提交
